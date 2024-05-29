@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.devsuperior.dspost.models.dto.PostDTO;
 import com.devsuperior.dspost.models.dto.UserDTO;
+import com.devsuperior.dspost.models.entities.Post;
 import com.devsuperior.dspost.models.entities.User;
 import com.devsuperior.dspost.repositories.UserRepository;
 import com.devsuperior.dspost.services.exceptions.ResourceNotFoundException;
@@ -44,6 +46,12 @@ public class UserService {
 		// verifica se o id existe
 		getUserById(id);
 		repository.deleteById(id);
+	}
+	
+	public List<PostDTO> getUserPosts(String id) {
+		User user = getUserById(id);
+		List<Post> posts = user.getPosts();
+		return posts.stream().map(x -> new PostDTO(x)).toList();
 	}
 	
 	
