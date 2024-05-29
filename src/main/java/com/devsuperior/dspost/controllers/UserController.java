@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.devsuperior.dspost.models.dto.PostDTO;
 import com.devsuperior.dspost.models.dto.UserDTO;
 import com.devsuperior.dspost.services.UserService;
 
@@ -55,6 +56,12 @@ public class UserController {
 	public ResponseEntity<Void> delete(@PathVariable String id) {
 		userService.delete(id);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("/{id}/posts")
+	public ResponseEntity<List<PostDTO>> getUserPosts(@PathVariable String id) {
+		List<PostDTO> result = userService.getUserPosts(id);
+		return ResponseEntity.ok(result);
 	}
 	
 }
