@@ -15,7 +15,7 @@ import com.devsuperior.dspost.models.embedded.Comment;
 public class Post {
 	
 	@Id
-	private String Id;
+	private String id;
 	private Instant moment;
 	private String title;
 	private String body;
@@ -26,7 +26,7 @@ public class Post {
 	}
 	
 	public Post(String id, Instant moment, String title, String body, Author author) {
-		Id = id;
+		this.id = id;
 		this.moment = moment;
 		this.title = title;
 		this.body = body;
@@ -34,11 +34,11 @@ public class Post {
 	}
 
 	public String getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(String id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public Instant getMoment() {
@@ -79,7 +79,7 @@ public class Post {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(Id);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -91,6 +91,6 @@ public class Post {
 		if (getClass() != obj.getClass())
 			return false;
 		Post other = (Post) obj;
-		return Objects.equals(Id, other.Id);
+		return Objects.equals(id, other.id);
 	}
 }
