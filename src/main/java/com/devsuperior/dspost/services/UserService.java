@@ -40,6 +40,12 @@ public class UserService {
 		return new UserDTO(entity);
 	}
 	
+	public void delete(String id) {
+		// verifica se o id existe
+		getUserById(id);
+		repository.deleteById(id);
+	}
+	
 	
 
 	private void copyDtoToEntity(UserDTO dto, User entity) {
