@@ -1,5 +1,7 @@
 package com.devsuperior.dspost.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,16 +21,14 @@ public class PostService {
 		return new PostDTO(entity);
 	}
 	
+	public List<PostDTO> findByTitle(String text) {
+		List<Post> listPost = postRepository.findByTitleContainingIgnoreCase(text);
+		return listPost.stream().map(x -> new PostDTO(x)).toList();
+	}
 	
-
 	private Post getPostById(String id) {
 		Post post = postRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Objeto não encontrado"));
-		
 		return post;
-		
 	}
-	
-	
-
 }
