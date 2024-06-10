@@ -15,7 +15,11 @@ import com.devsuperior.dspost.repositories.PostRepository;
 import com.devsuperior.dspost.repositories.UserRepository;
 
 import jakarta.annotation.PostConstruct;
-
+/*
+ *  A classe TestConfig é uma classe de configuração do Spring utilizada para inicializar dados de teste em um ambiente controlado. 
+ *  Esta configuração é específica para o perfil "test", 
+ *  permitindo que o ambiente de testes seja configurado de maneira isolada dos demais ambientes.
+ */
 @Configuration
 @Profile("test")
 public class TestConfig {
@@ -26,12 +30,13 @@ public class TestConfig {
 	@Autowired
 	private PostRepository postRepository;
 	
-	@PostConstruct
+	@PostConstruct // Indica que este método será executado ao iniciar a aplicação
 	public void init() {
 		
 		userRepository.deleteAll();
 		postRepository.deleteAll();
 		
+		// Cria três usuários fictícios.
 		User maria = new User(null, "Maria Brow", "maria@gmail.com");
 		User alex = new User(null, "Alex Green", "alex@gmail.com");
 		User bob = new User(null, "Bob Grey", "bob@gmail.com");
